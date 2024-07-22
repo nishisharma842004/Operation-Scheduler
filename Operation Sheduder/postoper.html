@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Post Operation Schedule Details</title>
+    <link rel="stylesheet" href="css/postoper.css">
+</head>
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Post Operation Schedule Details</h2>
+            
+            <form id="scheduleForm">
+                <div class="inputbox">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="inputbox">
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" required>
+                </div>
+                <div class="inputbox">
+                    <label for="otId">Operation Theater ID:</label>
+                    <input type="text" id="otId" required>
+                </div>
+                <div class="inputbox">
+                    <label for="anesthesia">Type of Anesthesia:</label>
+                    <input type="text" id="anesthesia" required>
+                </div>
+                <div class="inputbox">
+                    <label for="anesthesiologist">Anesthesiologist:</label>
+                    <input type="text" id="anesthesiologist" required>
+                </div>
+                <div class="inputbox">
+                    <label for="assistantSurgeon">Assistant Surgeon:</label>
+                    <input type="text" id="assistantSurgeon">
+                </div>
+                <div class="inputbox">
+                    <label for="nurses">Nurses Involved:</label>
+                    <input type="text" id="nurses">
+                </div>
+                <div class="inputbox">
+                    <label for="preOpEvents">Pre-Operative Events:</label>
+                    <input type="text" id="preOpEvents">
+                </div>
+                <div class="inputbox">
+                    <label for="postOpEvents">Post-Operative Events:</label>
+                    <input type="text" id="postOpEvents">
+                </div>
+                <button type="button" class="sub" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDg-Hq0rJr8QsQMTA5ZEayOvzqZ1Gb4CNI",
+            authDomain: "operation-sheduler.firebaseapp.com",
+            databaseURL: "https://operation-sheduler-default-rtdb.firebaseio.com",
+            projectId: "operation-sheduler",
+            storageBucket: "operation-sheduler.appspot.com",
+            messagingSenderId: "125099027205",
+            appId: "1:125099027205:web:25d2b8f7ff6bdf490aa56c",
+            measurementId: "G-HGSJ3BYQ2G"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        document.getElementById("submit").addEventListener('click', function(e) {
+            e.preventDefault();
+            set(ref(db, 'postOperation/' + document.getElementById("otId").value), {
+                date: document.getElementById("date").value,
+                time: document.getElementById("time").value,
+                operationTheaterId: document.getElementById("otId").value,
+                typeOfAnesthesia: document.getElementById("anesthesia").value,
+                anesthesiologist: document.getElementById("anesthesiologist").value,
+                assistantSurgeon: document.getElementById("assistantSurgeon").value,
+                nurses: document.getElementById("nurses").value,
+                preOpEvents: document.getElementById("preOpEvents").value,
+                postOpEvents: document.getElementById("postOpEvents").value
+            });
+            alert("Details Submitted Successfully!");
+        });
+    </script>
+</body>
+</html>

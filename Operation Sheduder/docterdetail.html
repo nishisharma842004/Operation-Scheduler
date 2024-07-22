@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/doctordetail.css">
+</head>
+<body>
+    <form id="doctorForm">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter doctor's name" required>
+        </div>
+        <div>
+            <label for="specialty">Specialty:</label>
+            <input type="text" id="specialty" placeholder="Enter doctor's specialty" required>
+        </div>
+        <div>
+            <label for="availableHours">Available Hours:</label>
+            <input type="text" id="availableHours" placeholder="Enter available hours" required>
+        </div>
+        <button type="submit">Add Doctor</button>
+    </form>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDg-Hq0rJr8QsQMTA5ZEayOvzqZ1Gb4CNI",
+            authDomain: "operation-sheduler.firebaseapp.com",
+            databaseURL: "https://operation-sheduler-default-rtdb.firebaseio.com",
+            projectId: "operation-sheduler",
+            storageBucket: "operation-sheduler.appspot.com",
+            messagingSenderId: "125099027205",
+            appId: "1:125099027205:web:464467fa5c6d2d020aa56c",
+            measurementId: "G-VN3J6R2VFE"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const doctorForm = document.getElementById('doctorForm');
+        const nameInput = document.getElementById('name');
+        const specialtyInput = document.getElementById('specialty');
+        const availableHoursInput = document.getElementById('availableHours');
+
+        doctorForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = nameInput.value.trim();
+            const specialty = specialtyInput.value.trim();
+            const availableHours = availableHoursInput.value.trim();
+
+            if (name && specialty && availableHours) {
+                db.ref('doctors/' + name).set({
+                    name: name,
+                    specialty: specialty,
+                    availableHours: availableHours
+                })
+                .then(() => {
+                    alert('Doctor added successfully');
+                    doctorForm.reset();
+                })
+                .catch((error) => {
+                    console.error('Error adding document: ', error);
+                });
+            } else {
+                alert('All fields are required.');
+            }
+        });
+    </script>
+</body>
+</html>

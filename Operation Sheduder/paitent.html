@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Patient Details</title>
+    <link rel="stylesheet" href="css/paitent.css">
+    <script src="js/paitent.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Patient Details</h2>
+        <form id="patientForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+            <label for="age">Age</label>
+            <input type="number" id="age" required>
+            <label for="ailment">Ailment</label>
+            <input type="text" id="ailment" required>
+            <button type="submit">Add Patient</button>
+        </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script src="managePatient.js"></script>
+</body>
+</html>

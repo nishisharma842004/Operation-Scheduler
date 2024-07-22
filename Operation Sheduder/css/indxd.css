@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif; /* Add a default font */
+}
+
+.navigation {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: gray; /* Set the background color to gray */
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 70px; /* Adjust the height as needed */
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left span {
+  font-size: 35px;
+  padding-top: 10px;
+}
+
+.nav-left ul {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  font-size: 22px;
+  padding-bottom: 23px;
+}
+
+.nav-left ul li {
+  list-style: none;
+  margin: 0 14px;
+  font-family: var(--font2);
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-left ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-left ul li a:hover {
+  color: var(--main-bg-color);
+  font-weight: bolder;
+}
+
+.nav-right input {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.nav-right .btn {
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.content {
+  min-height: 100vh; /* Ensures the content takes at least the full height of the viewport */
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 70px; /* Offset the height of the navigation bar */
+  padding: 9px;
+  position: relative;
+  background-image: url('https://colorlib.com/wp/wp-content/uploads/sites/2/hospice-free-template.jpg'); /* Replace with your image URL */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+}
+
+.content-left {
+  font-family: var(--font1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 49px;
+  z-index: 1;
+  flex: 1 1 300px;
+}
+
+.content-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 300px;
+}
+
+.content-right img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 200px;
+}
+
+.footer {
+  height: 50px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-direction: column;
+}
+
+.footer a {
+  color: white;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .nav-left ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .nav-left ul li {
+    margin: 10px 0;
+  }
+  
+  .navigation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .nav-right {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .nav-right input {
+    width: calc(100% - 60px);
+    margin-right: 10px;
+  }
+  
+  .nav-right .btn {
+    width: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-left span {
+    font-size: 28px;
+  }
+  
+  .nav-left ul {
+    font-size: 18px;
+  }
+  
+  .nav-right input,
+  .nav-right .btn {
+    font-size: 14px;
+    padding: 4px;
+  }
+}

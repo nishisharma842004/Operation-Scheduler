@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firebase_form</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Login Form</h2>
+            
+            <form>
+                <div class="inputbox">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" title="Enter your username" placeholder="Enter your username" required>
+                </div>
+                <div class="inputbox">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" title="Enter your email" placeholder="Enter your email" required>
+                </div>
+                <div class="inputbox">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" title="Enter your phone number" placeholder="Enter your phone number" required>
+                </div>
+                <button type="button" class="sub" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3rmsMG0S3xzYH_U5Z0-Y_MG09C1vOFGo",
+            authDomain: "creativetutorial-8521d.firebaseapp.com",
+            projectId: "creativetutorial-8521d",
+            storageBucket: "creativetutorial-8521d.appspot.com",
+            messagingSenderId: "709703750383",
+            appId: "1:709703750383:web:9a6c353d641da4f9e8811a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Get reference to database service
+        const db = getDatabase(app);
+
+        document.getElementById("submit").addEventListener('click', function(e) {
+            e.preventDefault();
+            set(ref(db, 'user/' + document.getElementById("username").value), {
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                PhoneNumber: document.getElementById("phone").value
+            });
+            alert("Login Successful!");
+        });
+    </script>
+</body>
+</html>
